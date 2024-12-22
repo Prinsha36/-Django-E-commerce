@@ -41,6 +41,8 @@ class Product(models.Model):
         # 40 - 40 * 10 / 100
         dis_price = self.price - self.price * self.discount / 100
         return dis_price
+    
+   
 
     def __str__(self):
         return self.name
@@ -76,3 +78,4 @@ class CartItem(models.Model):
 
     def __str__(self):
         return f"{self.quantity} x {self.product.name} for {self.customer.user.first_name} {self.customer.user.last_name}"
+

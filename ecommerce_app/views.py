@@ -82,5 +82,30 @@ def add_to_cart(request, product_id):
 
 
 def cart_list(request):
-    carts = CartItem.objects.filter(customer=request.user.customer)
+    carts=[]
+    data = {}
+
+    print(request.user)
+    # CartItem.objects.filter
+    if hasattr(request.user, "customer"):
+        total_cart_items = 0
+
+        carts = CartItem.objects.filter(customer=request.user.customer)
+        for cart in carts:
+            total_cart_items += cart.quantity
+
+        data.update({"total_cart_items": total_cart_items})
+        print(request.user.customer)
+
+    print(data)
+
     return render(request, "cart.html", {"carts": carts})
+
+def remove_from_cart(request, cart_item_id):
+    if not request.user.is_authenticated:
+        return redirect('login')
+
+    cart_item = get_object_or_404(CartItem, id=cart_item_id)
+    cart_item.delete()
+
+    return redirect('cart_list')
