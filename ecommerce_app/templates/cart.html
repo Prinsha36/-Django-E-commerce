@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container">
     <h1>Your Cart</h1>
+    <a class="btn btn-outline-primary" href="{% url 'payment' %}">
+        <i class="bi-pay"></i>  Procced to Pay
+    </a>
     <table class="table">
         <thead>
             <tr>

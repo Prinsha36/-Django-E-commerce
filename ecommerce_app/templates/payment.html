@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block extra_css %}
+    <style>
+    .payment-method {
+        margin: 15px 0;
+    }
+    .payment-method label {
+        margin-left: 10px;
+    }
+    .btn {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        text-align: center;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    .btn:hover {
+        background-color: #45a049;
+    }
+    </style>
+{% endblock extra_css %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-4">
+                <h2>Select Payment Method</h2>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="payment-method">
+                        <input type="radio" id="esewa" name="payment_method" value="esewa" required>
+                        <label for="esewa">eSewa</label>
+                    </div>
+                    <div class="payment-method">
+                        <input type="radio"
+                               id="khalti"
+                               name="payment_method"
+                               value="khalti"
+                               required>
+                        <label for="khalti">Khalti</label>
+                    </div>
+                    <div class="payment-method">
+                        <input type="radio"
+                               id="imepay"
+                               name="payment_method"
+                               value="IMEPay"
+                               required>
+                        <label for="imepay">IMEPay</label>
+                    </div>
+                    <button type="submit" class="btn">Proceed to Pay</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock content %}
